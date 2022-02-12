@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_130631) do
+ActiveRecord::Schema.define(version: 2022_02_12_143418) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "password_digest"
+    t.boolean "root", default: false
+    t.boolean "rights_to_books", default: false
+    t.boolean "rights_to_categories", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
