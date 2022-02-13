@@ -1,15 +1,15 @@
 <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
   <ul class="d-flex align-items-center nav nav-pills">
     <li class="nav-item">
-      <%= button_to "Add category", categories_panel_path, method: "get", 
+      <%= button_to "Add category", new_category_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
     <li class="nav-item">
-      <%= button_to "Remove category", "/", method: "get", 
+      <%= button_to "Remove category", categories_remove_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
     <li class="nav-item">
-      <%= button_to "Edit category", "/", method: "get", 
+      <%= button_to "Edit category", categories_pre_edit_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
   </ul>
