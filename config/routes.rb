@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get 'categories/remove'=>'categories#remove'
   get 'categories/pre-edit'=>'categories#pre-edit'
+
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   
   resources :books
   resources :categories

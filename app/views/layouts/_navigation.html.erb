@@ -12,7 +12,10 @@
         </ul>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
+          <%= button_to "Login", login_path, method: :get, class: "btn btn-outline-light me-2" %>
+        </div>
+        <div class="text-end">
+          <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-outline-light me-2" %>
         </div>
       </div>
     </div>
