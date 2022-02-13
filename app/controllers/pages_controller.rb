@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :require_admin, except: [:index]
+
   def index
     @categories = Category.all
   end
@@ -9,6 +11,9 @@ class PagesController < ApplicationController
   def categories_panel
   end
 
-  def admin_panel
+  def books_panel
+  end
+
+  def authors_panel
   end
 end

@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :require_admin, except: [:show]
   
   def show
     @book = Book.find(params[:id])
