@@ -1,3 +1,4 @@
 <% @author.books.each do |book| %>
-  <p><%= book.title %></p>
+  <p><%= link_to book.title, book %></p>
 <% end %>
+
