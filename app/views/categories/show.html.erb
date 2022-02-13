@@ -1,3 +1,3 @@
 <% @groups.each do |group| %>
-  <p><%= group.book.title %></p>
+  <p><%= link_to group.book.title, group.book %></p>
 <% end %>

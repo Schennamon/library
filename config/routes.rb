@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'categories/remove'=>'categories#remove'
   get 'categories/pre-edit'=>'categories#pre-edit'
   
-  resources :books, except: [:index, :show]
+  resources :books
   resources :categories
   resources :authors
 end
