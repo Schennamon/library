@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'authors_panel'=>'pages#authors_panel'
   get 'books/remove'=>'books#remove'
   get 'books/pre-edit'=>'books#pre-edit'
+  get 'authors/remove'=>'authors#remove'
+  get 'authors/pre-edit'=>'authors#pre-edit'
   resources :books, except: [:index, :show]
   resources :categories, only: [:show]
-  resources :authors, only: [:index, :show]
+  resources :authors
 end
