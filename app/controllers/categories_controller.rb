@@ -28,10 +28,14 @@ class CategoriesController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+
+  end
+  
   def update
     @category = Category.find(params[:id])
-    if @category.update(params.permit(:name))
-      flash[:notice] = "Category was edited successfully."
+    if @category.update(params.permit(:rights_to_books, :rights_to_categories))
+      flash[:notice] = "Admin was edited successfully."
       redirect_to root_path
     else
       render 'edit'

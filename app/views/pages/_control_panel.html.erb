@@ -1,16 +1,22 @@
 <div class="d-flex flex-wrap justify-content-center py-3 mb-4">
   <ul class="d-flex align-items-center nav nav-pills">
     <li class="nav-item">
-      <%= button_to "Categories managment", categories_panel_path, method: "get", 
+      <%= button_to "Categories management", categories_panel_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
     <li class="nav-item">
-      <%= button_to "Books managment", books_panel_path, method: "get", 
+      <%= button_to "Books management", books_panel_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
     <li class="nav-item">
-      <%= button_to "Authors managment", authors_panel_path, method: "get", 
+      <%= button_to "Authors management", authors_panel_path, method: "get", 
       class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
     </li>
+    <% if current_admin.name == "root" %>
+      <li class="nav-item">
+        <%= button_to "Admins management", admins_panel_path, method: "get", 
+        class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
+      </li>
+    <% end %>
   </ul>
 </div>

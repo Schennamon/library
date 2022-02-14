@@ -1,0 +1,16 @@
+<div class="d-flex flex-wrap justify-content-center py-3 mb-4">
+  <ul class="d-flex align-items-center nav nav-pills">
+    <li class="nav-item">
+      <%= button_to "Create new admin", new_admin_path, method: "get", 
+      class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
+    </li>
+    <li class="nav-item">
+      <%= button_to "Remove admin", admins_remove_path, method: "get", 
+      class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
+    </li>
+    <li class="nav-item">
+      <%= button_to "Set up administrator access", admins_edit_path, method: "get", 
+      class: "btn btn-outline-dark btn-lg shadow mb-5 me-3" %>
+    </li>
+  </ul>
+</div>
