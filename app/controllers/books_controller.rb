@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :require_admin, except: [:show]
+  before_action :require_rights_to_books, except: [:show]
   
   def show
     @book = Book.find(params[:id])
@@ -44,5 +45,12 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author_id)
+  end
+
+  def require_rights_to_books
+    if !current_admin.rights_to_books? && !current_admin.root?
+      flash[:alert] = "You don't have enough rights."
+      redirect_to admin_panel_path
+    end
   end
 end
