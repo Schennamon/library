@@ -1,22 +1,27 @@
 <header class="p-3 bg-dark text-white">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 me-3 text-white text-decoration-none">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <%= fa_icon 'book 2x' %>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary"></a></li>
           <%= link_to "Authors", authors_path, class: "nav-link px-2 text-secondary" %>
-          <%= link_to "Ctrl panel", admin_panel_path, class: "nav-link px-2 text-white" %>
+          <% if logged_in? %>
+            <%= link_to "Ctrl panel", admin_panel_path, class: "nav-link px-2 text-white" %>
+          <% end %>
         </ul>
 
-        <div class="text-end">
-          <%= button_to "Login", login_path, method: :get, class: "btn btn-outline-light me-2" %>
-        </div>
-        <div class="text-end">
-          <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-outline-light me-2" %>
-        </div>
+        <% if !logged_in? %>
+          <div class="text-end">
+            <%= button_to "Login", login_path, method: :get, class: "btn btn-outline-light me-2" %>
+          </div>
+        <% else %>
+          <div class="text-end">
+            <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-outline-light me-2" %>
+          </div>
+        <% end %>
       </div>
     </div>
   </header>
