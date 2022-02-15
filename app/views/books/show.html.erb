@@ -1,3 +1,6 @@
+<% if @book.cover.attached? %>
+  <p><%= image_tag @book.cover, width: "200px" %></p>
+<% end %>
 <p>Title: <%= @book.title %></p>
 <p>Author: <%= @book.author.name %></p>
 <p>

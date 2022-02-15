@@ -9,6 +9,13 @@
       </div>
 
       <div class="form-group row">
+        <%= f.label :cover, class: "col-2 col-form-label" %>
+        <div class="col-10">
+          <%= f.file_field :cover, class: "form-control shadow mb-5 bg-white rounded" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
         <%= f.label :author_id, class: "col-2 col-form-label" %>
         <div class="col-10">
           <%= f.collection_select :author_id, Author.all, :id, :name %>
