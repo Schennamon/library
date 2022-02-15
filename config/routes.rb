@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'categories/remove'=>'categories#remove'
   get 'categories/pre-edit'=>'categories#pre-edit'
 
+  get 'groups/remove'=>'groups#remove'
+
   get 'admins/remove'=>'admins#remove'
   get 'admins/edit'=>'admins#edit'
   patch 'admin'=>'admins#update'
@@ -23,7 +25,8 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  
+
+  resources :groups
   resources :admins, except: [:edit, :update]
   resources :books
   resources :categories

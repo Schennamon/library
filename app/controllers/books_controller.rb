@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   before_action :require_admin, except: [:show]
   before_action :require_rights_to_books, except: [:show]
+
+  def index
+    @books = Book.all
+  end
   
   def show
     @book = Book.find(params[:id])
