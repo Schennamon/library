@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
 
     if @admin.save
       flash[:notice] = "Admin was created successfully."
-      redirect_to root_path
+      redirect_to admins_panel_path
     else
       render 'new'
     end
@@ -26,14 +26,14 @@ class AdminsController < ApplicationController
     @admin = Admin.find(params[:admin_id])
     @admin.destroy
     flash[:notice] = "Admin #{@admin.name} was deleted successfully."
-    redirect_to root_path
+    redirect_to admins_panel_path
   end
 
   def update
     @admin = Admin.find(params[:admin_id])
     if @admin.update(params.permit(:rights_to_books, :rights_to_categories))
       flash[:notice] = "Category was edited successfully."
-      redirect_to root_path
+      redirect_to admins_panel_path
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class AdminsController < ApplicationController
   def require_root_admin
     if !current_admin.root?
       flash[:alert] = "You don't have enough rights."
-      redirect_to admin_panel_path
+      redirect_to admins_panel_path
     end
   end
 

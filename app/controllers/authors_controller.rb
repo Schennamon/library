@@ -24,6 +24,7 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
+    byebug
     @author = Author.find(params[:id])
     @author.destroy
     flash[:notice] = "Author #{@author.name} was deleted successfully."
