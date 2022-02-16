@@ -1,4 +1,28 @@
-<% @author.books.each do |book| %>
-  <p><%= link_to book.title, book %></p>
-<% end %>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5 mt-5">
+
+  <div class="col"></div>
+
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= @author.name %></h5>
+        <p>
+          Books: 
+          <% @author.books.each do |book| %>
+            <%= link_to book.title, book %>
+          <% end %>
+        </p>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="btn-group text-center">
+            <%= button_to "Edit", edit_author_path, method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
+            <%= button_to "Delete", author_path(@author), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col"></div>
+
+</div>
 

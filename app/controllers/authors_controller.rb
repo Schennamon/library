@@ -17,28 +17,28 @@ class AuthorsController < ApplicationController
 
     if @author.save
       flash[:notice] = "Author was created successfully."
-      redirect_to root_path
+      redirect_to authors_panel_path
     else
       render 'new'
     end
   end
 
   def destroy
-    @author = Author.find(params[:author_id])
+    @author = Author.find(params[:id])
     @author.destroy
     flash[:notice] = "Author #{@author.name} was deleted successfully."
-    redirect_to root_path
+    redirect_to authors_panel_path
   end
 
   def edit
-
+    @author = Author.find(params[:id])
   end
 
   def update
     @author = Author.find(params[:id])
-    if @author.update(params.permit(:name))
+    if @author.update(author_params)
       flash[:notice] = "Author was edited successfully."
-      redirect_to root_path
+      redirect_to @author
     else
       render 'edit'
     end

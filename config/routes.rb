@@ -12,9 +12,6 @@ Rails.application.routes.draw do
   post 'books/update_book_authors'=>'books#update_book_authors'
   post 'books/destroy_book_author'=>'books#destroy_book_author'
 
-  get 'authors/remove'=>'authors#remove'
-  get 'authors/pre-edit'=>'authors#pre-edit'
-
   get 'categories/remove'=>'categories#remove'
   get 'categories/pre-edit'=>'categories#pre-edit'
 

@@ -1,0 +1,19 @@
+<div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+  <% @authors.each do |author| %>
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center"><%= link_to author.name, author %></h5>
+
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="btn-group text-center">
+              <%= button_to "View", author, method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
+              <%= button_to "Edit", edit_author_path(author), method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
+              <%= button_to "Delete", author_path(author), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-secondary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

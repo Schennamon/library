@@ -3,8 +3,8 @@ class CategoriesController < ApplicationController
   before_action :require_rights_to_categories, except: [:show]
 
   def show
-    category = Category.find(params[:id])
-    @groups = category.groups
+    @category = Category.find(params[:id])
+    @groups = @category.groups
   end
 
   def new 

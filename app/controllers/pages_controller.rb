@@ -16,9 +16,11 @@ class PagesController < ApplicationController
   end
 
   def books_panel
+    @books = Book.all
   end
 
   def authors_panel
+    @authors = Author.all
   end
 
   private
