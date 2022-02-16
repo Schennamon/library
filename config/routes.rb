@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get 'authors_panel'=>'pages#authors_panel'
   get 'admins_panel'=>'pages#admins_panel'
 
-  get 'books/remove'=>'books#remove'
-  get 'books/pre-edit'=>'books#pre-edit'
+  get 'books/add_author'=>'books#add_author'
+  get 'books/remove_author'=>'books#remove_author'
+  post 'books/update_book_authors'=>'books#update_book_authors'
+  post 'books/destroy_book_author'=>'books#destroy_book_author'
 
   get 'authors/remove'=>'authors#remove'
   get 'authors/pre-edit'=>'authors#pre-edit'

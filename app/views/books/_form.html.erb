@@ -1,6 +1,6 @@
 <div class="row justify-content-center mt-5">
   <div class="col-10">
-    <%= form_with(model: @book, html: { multipart: true }, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+    <%= form_with(model: @book, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
       <div class="form-group row">
         <%= f.label :title, class: "col-2 col-form-label" %>
         <div class="col-10">
@@ -12,13 +12,6 @@
         <%= f.label :cover, class: "col-2 col-form-label" %>
         <div class="col-10">
           <%= f.file_field :cover, class: "form-control shadow mb-5 bg-white rounded" %>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <%= f.label :author_id, class: "col-2 col-form-label" %>
-        <div class="col-10">
-          <%= f.collection_select :author_id, Author.all, :id, :name %>
         </div>
       </div>
 

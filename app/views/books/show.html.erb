@@ -1,11 +1,36 @@
-<% if @book.cover.attached? %>
-  <p><%= image_tag @book.cover, width: "200px" %></p>
-<% end %>
-<p>Title: <%= @book.title %></p>
-<p>Author: <%= @book.author.name %></p>
-<p>
-  Categories: 
-  <% @book.groups.each do |group| %>
-    <%= group.category.name %>
-  <% end %>
-</p>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5 mt-5">
+
+  <div class="col"></div>
+
+  <div class="col">
+    <div class="card shadow-sm">
+      <% if @book.cover.attached? %>
+        <%= image_tag @book.cover, width: "200px", class: "card-img-top"%>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= @book.title %></h5>
+        <p>
+          Authors: 
+          <% @book.authors.each do |author| %>
+            <%= author.name %>
+          <% end %>
+        </p>
+        <p>
+          Categories: 
+          <% @book.groups.each do |group| %>
+            <%= group.category.name %>
+          <% end %>
+        </p>
+        <div class="d-flex justify-content-between align-items-center">
+          <%= button_to "Edit", edit_book_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
+          <%= button_to "Delete", book_path(@book), class: "btn btn-sm btn-outline-secondary", method: :delete, data: { confirm: "Are you sure?"} %>
+          <%= button_to "Add author", books_add_author_path(@book), method: :get, class: "btn btn-sm btn-outline-secondary" %>
+          <%= button_to "Remove author", books_remove_author_path(@book), method: :get, class: "btn btn-sm btn-outline-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col"></div>
+
+</div>
