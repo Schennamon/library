@@ -6,16 +6,24 @@
     <div class="card shadow-sm">
       <div class="card-body">
         <h5 class="card-title text-center"><%= @author.name %></h5>
-        <p>
-          Books: 
-          <% @author.books.each do |book| %>
-            <%= link_to book.title, book %>
-          <% end %>
-        </p>
+        <% if !@author.books.empty? %>
+          <p>
+            <% if @author.books.count > 1 %>
+              Books:
+            <% else %>
+              Book:
+            <% end %>
+            <% @author.books.each do |book| %>
+              <%= link_to book.title, book, class: "text-decoration-none text-reset" %><% if book != @author.books.last %>,<% end %>
+            <% end %>
+          </p>
+        <% end %>
         <div class="d-flex justify-content-center align-items-center">
           <div class="btn-group text-center">
-            <%= button_to "Edit", edit_author_path, method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
-            <%= button_to "Delete", author_path(@author), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-secondary" %>
+            <% if logged_in? %>
+              <%= button_to "Edit", edit_author_path, method: :get, class: "btn btn-sm btn-outline-info me-2" %>
+              <%= button_to "Delete", author_path(@author), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-danger" %>
+            <% end %>
           </div>
         </div>
       </div>

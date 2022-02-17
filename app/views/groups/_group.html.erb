@@ -4,18 +4,24 @@
       <div class="col">
         <div class="card shadow-sm">
           <div class="card-body">
-            <p class="card-title">Title: <%= link_to group.book.title, group.book %></p>
+            <p class="card-title">Title: <%= link_to group.book.title, group.book, class: "text-decoration-none text-reset" %></p>
             <p>
-              Categories:
+              <% if group.book.categories.count > 1 %>
+                Categories:
+              <% else %>
+                Category:
+              <% end %>
               <% group.book.categories.each do |category| %>
-                <%= category.name %>
+                <%= category.name %><% if category != group.book.categories.last %>,<% end %>
               <% end %>
             </p>
             <div class="d-flex justify-content-center align-items-center">
               <div class="btn-group text-center">
-              <%= button_to "View", group.book, method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
-              <%= button_to "Edit", edit_book_path(group.book), method: :get, class: "btn btn-sm btn-outline-secondary me-2" %>
-              <%= button_to "Delete", book_path(group.book), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-secondary" %>
+              <%= button_to "View", group.book, method: :get, class: "btn btn-sm btn-outline-success me-2" %>
+              <% if logged_in? %>
+                <%= button_to "Edit", edit_book_path(group.book), method: :get, class: "btn btn-sm btn-outline-info me-2" %>
+                <%= button_to "Delete", book_path(group.book), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-danger" %>
+              <% end %>
               </div>
             </div>
           </div>

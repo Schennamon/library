@@ -9,23 +9,40 @@
       <% end %>
       <div class="card-body">
         <h5 class="card-title text-center"><%= @book.title %></h5>
-        <p>
-          Authors: 
-          <% @book.authors.each do |author| %>
-            <%= author.name %>
-          <% end %>
-        </p>
-        <p>
-          Categories: 
-          <% @book.groups.each do |group| %>
-            <%= group.category.name %>
-          <% end %>
-        </p>
+
+        <% if !@book.authors.empty? %>
+          <p>
+            <% if @book.authors.count > 1 %>
+              Authors: 
+            <% else %>
+              Author:
+            <% end %>
+            <% @book.authors.each do |author| %>
+              <%= author.name %>
+            <% end %>
+          </p>
+        <% end %>
+
+        <% if !@book.groups.empty? %>
+          <p>
+            <% if @book.groups.count > 1 %>
+              Categories: 
+            <% else %>
+              Category:
+            <% end %>
+            <% @book.groups.each do |group| %>
+              <%= group.category.name %><% if group != @book.groups.last %>,<% end %>
+            <% end %>
+          </p>
+        <% end %>
+
         <div class="d-flex justify-content-between align-items-center">
-          <%= button_to "Edit", edit_book_path, method: :get, class: "btn btn-sm btn-outline-secondary" %>
-          <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-secondary" %>
-          <%= button_to "Add author", books_add_author_path(@book), method: :get, class: "btn btn-sm btn-outline-secondary" %>
-          <%= button_to "Remove author", books_remove_author_path(@book), method: :get, class: "btn btn-sm btn-outline-secondary" %>
+          <% if logged_in? %>
+            <%= button_to "Edit", edit_book_path, method: :get, class: "btn btn-sm btn-outline-info" %>
+            <%= button_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-sm btn-outline-danger" %>
+            <%= button_to "Add author", books_add_author_path(@book), method: :get, class: "btn btn-sm btn-outline-primary" %>
+            <%= button_to "Remove author", books_remove_author_path(@book), method: :get, class: "btn btn-sm btn-outline-warning" %>
+          <% end %>
         </div>
       </div>
     </div>

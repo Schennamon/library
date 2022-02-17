@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :require_admin, except: [:show]
-  before_action :require_rights_to_books, except: [:show]
+  before_action :require_admin, except: [:index, :show]
+  before_action :require_rights_to_books, except: [:index, :show]
 
   def index
     @books = Book.all
