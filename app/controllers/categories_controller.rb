@@ -1,14 +1,33 @@
 class CategoriesController < ApplicationController
   before_action :require_admin, except: [:show]
+  before_action :set_category, only: [:show, :update]
   before_action :require_rights_to_categories, except: [:show]
 
+  def pre_edit
+  end
+
+  def remove
+  end
+
   def show
-    @category = Category.find(params[:id])
     @groups = @category.groups
   end
 
   def new 
     @category = Category.new
+  end
+
+  def edit
+    @category = Category.find(params[:category_id])
+  end
+
+  def update
+    if @category.update(category_params)
+      flash[:notice] = "Category was edited successfully."
+      redirect_to @category
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -29,25 +48,11 @@ class CategoriesController < ApplicationController
     redirect_to root_path
   end
 
-  def pre_edit
-
-  end
-
-  def edit
-    @category = Category.find(params[:category_id])
-  end
-  
-  def update
-    @category = Category.find(params[:id])
-    if @category.update(category_params)
-      flash[:notice] = "Category was edited successfully."
-      redirect_to @category
-    else
-      render 'edit'
-    end
-  end
-
   private
+
+  def set_category
+    @category = Category.find(params[:id])
+  end
 
   def category_params
     params.require(:category).permit(:name)

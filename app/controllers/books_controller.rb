@@ -1,17 +1,57 @@
 class BooksController < ApplicationController
   before_action :require_admin, except: [:index, :show]
+  before_action :set_book, only: [:update_book_authors, :destroy_book_author, :show, :edit, :update, :destroy]
   before_action :require_rights_to_books, except: [:index, :show]
+
+  def add_author
+  end
+
+  def remove_author
+  end
+
+  def update_book_authors
+    @book.authors << Author.find(params[:author_id])
+
+    if @book.save
+      flash[:notice] = "Author was added successfully."
+      redirect_to @book
+    else
+      render 'add_author'
+    end
+  end
+
+  def destroy_book_author
+    author = @book.authors.find(params[:author_id])
+
+    if @book.authors.delete(author)
+      flash[:notice] = "Author #{author.name} was deleted successfully."
+      redirect_to @book
+    else
+      redirect_to @book
+    end
+  end
+  
+  def show
+  end
 
   def index
     @books = Book.paginate(page: params[:page], per_page: 15)
   end
-  
-  def show
-    @book = Book.find(params[:id])
-  end
 
   def new
     @book = Book.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @book.update(book_params)
+      flash[:notice] = "Book was edited successfully."
+      redirect_to @book
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -26,54 +66,16 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
     flash[:notice] = "Book #{@book.title} was deleted successfully."
     redirect_to books_path
   end
 
-  def edit
-    @book = Book.find(params[:id])
-  end
-
-  def add_author
-  end
-
-  def update
-    @book = Book.find(params[:id])
-    if @book.update(book_params)
-      flash[:notice] = "Book was edited successfully."
-      redirect_to @book
-    else
-      render 'edit'
-    end
-  end
-
-  def update_book_authors
-    @book = Book.find(params[:book_id])
-    @book.authors << Author.find(params[:author_id])
-
-    if @book.save
-      flash[:notice] = "Author was added successfully."
-      redirect_to @book
-    else
-      render 'add_author'
-    end
-  end
-
-  def destroy_book_author
-    @book = Book.find(params[:book_id])
-    author = @book.authors.find(params[:author_id])
-
-    if @book.authors.delete(author)
-      flash[:notice] = "Author #{author.name} was deleted successfully."
-      redirect_to @book
-    else
-      redirect_to @book
-    end
-  end
-
   private
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
   def book_params
     params.require(:book).permit(:title, :cover)

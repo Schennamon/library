@@ -1,14 +1,27 @@
 class AdminsController < ApplicationController
   before_action :require_root_admin
 
+  def remove
+  end
+
   def setup
+  end
+
+  def new 
+    @admin = Admin.new
   end
 
   def edit
   end
 
-  def new 
-    @admin = Admin.new
+  def update
+    @admin = Admin.find(params[:admin_id])
+    if @admin.update(params.permit(:rights_to_books, :rights_to_categories))
+      flash[:notice] = "Admin was edited successfully."
+      redirect_to admins_panel_path
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -27,16 +40,6 @@ class AdminsController < ApplicationController
     @admin.destroy
     flash[:notice] = "Admin #{@admin.name} was deleted successfully."
     redirect_to admins_panel_path
-  end
-
-  def update
-    @admin = Admin.find(params[:admin_id])
-    if @admin.update(params.permit(:rights_to_books, :rights_to_categories))
-      flash[:notice] = "Admin was edited successfully."
-      redirect_to admins_panel_path
-    else
-      render 'edit'
-    end
   end
 
   private

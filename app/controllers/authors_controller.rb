@@ -1,5 +1,9 @@
 class AuthorsController < ApplicationController
   before_action :require_admin, except: [:index, :show]
+  before_action :set_author, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
 
   def index
     @authors = Author.paginate(page: params[:page], per_page: 15)
@@ -8,8 +12,17 @@ class AuthorsController < ApplicationController
   def new
     @author = Author.new
   end
-  def show
-    @author = Author.find(params[:id])
+
+  def edit
+  end
+
+  def update
+    if @author.update(author_params)
+      flash[:notice] = "Author was edited successfully."
+      redirect_to @author
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -24,28 +37,16 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    byebug
-    @author = Author.find(params[:id])
     @author.destroy
     flash[:notice] = "Author #{@author.name} was deleted successfully."
     redirect_to authors_panel_path
   end
-
-  def edit
-    @author = Author.find(params[:id])
-  end
-
-  def update
-    @author = Author.find(params[:id])
-    if @author.update(author_params)
-      flash[:notice] = "Author was edited successfully."
-      redirect_to @author
-    else
-      render 'edit'
-    end
-  end
   
   private
+
+  def set_author
+    @author = Author.find(params[:id])
+  end
 
   def author_params
     params.require(:author).permit(:name)
