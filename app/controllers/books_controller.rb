@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :require_rights_to_books, except: [:index, :show]
 
   def index
-    @books = Book.all
+    @books = Book.paginate(page: params[:page], per_page: 15)
   end
   
   def show

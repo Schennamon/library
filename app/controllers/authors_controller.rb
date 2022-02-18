@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @authors = Author.all
+    @authors = Author.paginate(page: params[:page], per_page: 15)
   end
 
   def new

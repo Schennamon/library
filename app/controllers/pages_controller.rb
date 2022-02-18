@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   before_action :require_root_admin, only: [:admins_panel]
 
   def index
-    @categories = Category.all
+    @categories = Category.paginate(page: params[:page], per_page: 12)
   end
 
   def admin_panel
