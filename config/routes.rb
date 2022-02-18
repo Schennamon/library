@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post 'books/destroy_book_author'=>'books#destroy_book_author'
 
   get 'categories/remove'=>'categories#remove'
-  get 'categories/pre-edit'=>'categories#pre-edit'
+  get 'categories/pre_edit'=>'categories#pre_edit'
 
   get 'groups/remove'=>'groups#remove'
 

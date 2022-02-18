@@ -32,7 +32,7 @@ class AdminsController < ApplicationController
   def update
     @admin = Admin.find(params[:admin_id])
     if @admin.update(params.permit(:rights_to_books, :rights_to_categories))
-      flash[:notice] = "Category was edited successfully."
+      flash[:notice] = "Admin was edited successfully."
       redirect_to admins_panel_path
     else
       render 'edit'

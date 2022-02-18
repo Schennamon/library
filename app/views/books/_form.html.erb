@@ -1,25 +1,28 @@
-<div class="row justify-content-center mt-5">
-  <div class="col-10">
-    <%= form_with(model: @book, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
-      <div class="form-group row">
-        <%= f.label :title, class: "col-2 col-form-label" %>
-        <div class="col-10">
-          <%= f.text_field :title, class: "form-control shadow mb-5 bg-white rounded" %>
+<div class="container">
+  <%= render "shared/errors", obj: @book %>
+  <div class="row justify-content-center mt-5">
+    <div class="col-10">
+      <%= form_with(model: @book, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :title, class: "col-2 col-form-label" %>
+          <div class="col-10">
+            <%= f.text_field :title, class: "form-control shadow mb-5 bg-white rounded" %>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <%= f.label :cover, class: "col-2 col-form-label" %>
-        <div class="col-10">
-          <%= f.file_field :cover, class: "form-control shadow mb-5 bg-white rounded" %>
+        <div class="form-group row">
+          <%= f.label :cover, class: "col-2 col-form-label" %>
+          <div class="col-10">
+            <%= f.file_field :cover, class: "form-control shadow mb-5 bg-white rounded" %>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row justify-content-center">
-        <div class="d-grid gap-2 col-2 mx-auto">
-          <%= f.submit class: "btn btn-outline-dark btn-lg shadow mb-5 bg-white rounded" %>
+        <div class="form-group row justify-content-center">
+          <div class="d-grid gap-2 col-2 mx-auto">
+            <%= f.submit class: "btn btn-outline-dark btn-lg shadow mb-5 bg-white rounded" %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
