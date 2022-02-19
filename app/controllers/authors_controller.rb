@@ -1,5 +1,5 @@
 class AuthorsController < ApplicationController
-  before_action :require_admin, except: [:index, :show]
+  before_action :require_admin
   before_action :set_author, only: [:show, :edit, :update, :destroy]
 
   def show

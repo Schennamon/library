@@ -7,10 +7,10 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary"></a></li>
-          <%= link_to "Authors", authors_path, class: "nav-link px-2 text-secondary" %>
-          <%= link_to "Books", books_path, class: "nav-link px-2 text-secondary" %>
+          <%= link_to "Books", books_path, class: "nav-link px-2 text-white" %>
           <% if logged_in? %>
-            <%= link_to "Ctrl panel", admin_panel_path, class: "nav-link px-2 text-white" %>
+            <%= link_to "Authors", authors_path, class: "nav-link px-2 text-secondary" %>
+            <%= link_to "Ctrl panel", admin_panel_path, class: "nav-link px-2 text-secondary" %>
           <% end %>
         </ul>
 
