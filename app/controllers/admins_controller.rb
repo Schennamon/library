@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  before_action :require_admin
   before_action :require_root_admin
 
   def remove
