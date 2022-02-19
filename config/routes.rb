@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  resources :groups, except: [:show, :update]
+  resources :groups, except: [:index, :show, :update]
   resources :admins, only: [:new, :create]
   resources :books
   resources :categories, except: [:index]
