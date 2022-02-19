@@ -2,7 +2,7 @@ require "test_helper"
 
 class BookTest < ActiveSupport::TestCase
   def setup
-    @book = Book.new(title: "Sports", author_id: 1)
+    @book = Book.new(title: "Sports")
   end
 
   test "book should be valid" do

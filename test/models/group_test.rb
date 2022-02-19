@@ -7,7 +7,7 @@ class GroupTest < ActiveSupport::TestCase
 
   test "group should be valid" do
     Author.create(id: 1, name: "T.G. Shevchenko")
-    Book.create(id: 1, title: "Kobzar", author_id: 1)
+    Book.create(id: 1, title: "Kobzar")
     Category.create(id: 1, name: "Poems")
     assert @group.valid?
   end
