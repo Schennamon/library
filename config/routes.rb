@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   post 'books/destroy_book_author'=>'books#destroy_book_author'
 
   get 'categories/remove'=>'categories#remove'
+  delete 'categories/remove'=>'categories#destroy'
   get 'categories/pre_edit'=>'categories#pre_edit'
 
   get 'groups/remove'=>'groups#remove'
 
   get 'admins/remove'=>'admins#remove'
+  delete 'admins/remove'=>'admins#destroy'
   get 'admins/edit'=>'admins#edit'
   patch 'admin'=>'admins#update'
 
@@ -25,9 +27,9 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  resources :groups
-  resources :admins, except: [:edit, :update]
+  resources :groups, except: [:show, :update]
+  resources :admins, only: [:new, :create]
   resources :books
-  resources :categories
+  resources :categories, except: [:index]
   resources :authors
 end
