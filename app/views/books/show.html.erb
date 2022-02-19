@@ -18,7 +18,7 @@
               Author:
             <% end %>
             <% @book.authors.each do |author| %>
-              <%= author.name %>
+              <%= author.name %><% if author != @book.authors.last %>,<% end %>
             <% end %>
           </p>
         <% end %>
